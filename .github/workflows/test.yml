@@ -5,11 +5,11 @@ on:
   
   push:
     branches: 
-      - 'test'
+      - 'main'
     tags:
     - 'v*'
   pull_request:
-    branches: [ "test" ]
+    branches: [ "main" ]
 
 jobs:
   build:
