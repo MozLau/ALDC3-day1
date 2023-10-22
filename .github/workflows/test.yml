@@ -21,7 +21,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t Dockerfile .
+          docker build -t Dockerfile:latest .
         
         
 
