@@ -31,3 +31,4 @@ jobs:
       - name : cat output
         run : |
           wc -c first.table
+          ls
