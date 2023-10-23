@@ -25,5 +25,9 @@ jobs:
           scan-type: 'fs'
           ignore-unfixed: true
           format: 'table'
-          
+          output: 'first.table'
           severity: 'CRITICAL,HIGH'
+
+      - name : cat output
+        run : |
+          cat first.table
