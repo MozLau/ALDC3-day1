@@ -30,4 +30,4 @@ jobs:
 
       - name : cat output
         run : |
-          cat first.table
+          wc -c first.table
