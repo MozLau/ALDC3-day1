@@ -60,7 +60,7 @@ jobs:
       
       - name: Sign image with a key
         run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "mozlau/cicd:@{{github.sha}}"
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "mozlau/cicd"
         env:
           
           COSIGN_PRIVATE_KEY: ${{secrets.COSIGN_PRIVATE_KEY}}
