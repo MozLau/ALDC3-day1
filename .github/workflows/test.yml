@@ -74,6 +74,7 @@ jobs:
           SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
 
+      - name: upload
       - uses: MeilCli/slack-upload-file@v3
         with:
           slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
