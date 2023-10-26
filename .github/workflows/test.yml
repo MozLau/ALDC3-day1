@@ -41,7 +41,7 @@ jobs:
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan failed - LIU BAO
           SLACK_USERNAME: CICD
-          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_SUMMIT }}
+          SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUMMIT}}
 
       - uses: MeilCli/slack-upload-file@v3
         with:
