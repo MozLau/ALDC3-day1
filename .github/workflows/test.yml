@@ -1,15 +1,15 @@
 
-name: build
+name: build-CRITICAL
 
 on:
   
   push:
     branches: 
-      - CRITICAL'
+      - 'CRITICAL'
     tags:
       - 'v[0-9].[0-9]'
   pull_request:
-    branches: [ "CRITICAL" ]
+    branches: ["CRITICAL"]
 
 jobs:
   build:
@@ -63,12 +63,12 @@ jobs:
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}"
         env:
           TAGS: 'mozlau/cicd'
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+          COSIGN_PRIVATE_KEY: ${{secrets.COSIGN_PRIVATE_KEY}}
+          COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
 
       # 
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+
+      - uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: general
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
@@ -76,15 +76,15 @@ jobs:
           SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:'
           SLACK_TITLE: Information
           SLACK_USERNAME: CICD
-          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
+          SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUMMIT}}
 
-      - name: upload
-        uses: MeilCli/slack-upload-file@v3
+    
+      - uses: MeilCli/slack-upload-file@v3
         with:
-          slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
-          channel_id: ${{secrets.WEBHOOK_TEST_ID}}
+          slack_token: ${{secrets.WEBHOOK_SUMMIT_TOKEN}}
+          channel_id: ${{secrets.WEBHOOK_SUMMIT_ID}}
           content: 'file content'
-          file_type: 'text'
+          file_type: 'txt'
           file_name: 'trivy-result.txt'
           title: 'title of file'
           initial_comment: 'post by LAUBAO' 
