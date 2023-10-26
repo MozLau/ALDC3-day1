@@ -19,7 +19,7 @@ jobs:
       # 2
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
@@ -33,7 +33,7 @@ jobs:
         
       # 3
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v3
+        uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: submission
           SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
@@ -41,12 +41,12 @@ jobs:
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan failed - LIU BAO
           SLACK_USERNAME: DipSA 57 CICD
-          SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUMMIT}}
+          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_SUMMIT }}
 
       - uses: MeilCli/slack-upload-file@v3
         with:
-          slack_token: ${{secrets.WEBHOOK_SUMMIT_TOKEN}}
-          channel_id: ${{secrets.WEBHOOK_SUMMIT_ID}}
+          slack_token: ${{ secrets.WEBHOOK_SUMMIT_TOKEN }}
+          channel_id: ${{ secrets.WEBHOOK_SUMMIT_ID }}
           content: 'file content'
           file_type: 'txt'
           file_name: 'trivy-result.txt'
