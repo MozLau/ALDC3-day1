@@ -33,7 +33,7 @@ jobs:
         
       # 3
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@v3
         env:
           SLACK_CHANNEL: submission
           SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
