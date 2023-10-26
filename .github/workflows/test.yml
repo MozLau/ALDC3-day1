@@ -27,7 +27,7 @@ jobs:
           scan-type: 'fs'
           ignore-unfixed: true
           format: 'table'
-          output: 'first.table'
+          output: 'HIGH.table'
           severity: 'HIGH'
 
         
@@ -35,13 +35,26 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: general
-          SLACK_COLOR: ${{ good }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_CHANNEL: devops
+          SLACK_COLOR: ${{ #ff00ff }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:<https://hub.docker.com/repository/docker/mozlau/cicd/general>'
-          SLACK_TITLE: Information
+          SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
+          SLACK_TITLE: Scan failed - LAU BAO
           SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
+
+      - uses: MeilCli/slack-upload-file@v3
+        with:
+          slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
+          channel_id: ${{devops}}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'trivy-result.txt'
+          title: 'title of file'
+          initial_comment: 'post by LAUBAO'
+          
+          
+        
         
 
      
