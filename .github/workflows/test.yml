@@ -70,11 +70,11 @@ jobs:
 
       - uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: general
+          SLACK_CHANNEL: submisson
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\n<Docker:https://hub.docker.com/repository/docker/mozlau/cicd/general>'
-          SLACK_TITLE: Information
+          SLACK_TITLE: Image build and signed
           SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUMMIT}}
 
