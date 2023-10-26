@@ -73,7 +73,12 @@ jobs:
           SLACK_CHANNEL: submisson
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Name: LIUBAO \n Matriculation: A0286053A \n Email: <e1221865@u.nus.edu> \n <https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git> \n Docker:<https://hub.docker.com/repository/docker/mozlau/cicd/general>'
+          SLACK_MESSAGE: |
+            'Name: LIUBAO'
+            'Matriculation: A0286053A'
+            'Email: e1221865@u.nus.edu' 
+            'GIthub: <https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>'
+            'Docker: <https://hub.docker.com/repository/docker/mozlau/cicd/general>'
           SLACK_TITLE: Image build and signed
           SLACK_USERNAME: DipSA 57 CICD
           SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
