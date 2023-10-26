@@ -38,7 +38,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_COLOR: ${{ good }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:'
+          SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:<https://hub.docker.com/repository/docker/mozlau/cicd/general>'
           SLACK_TITLE: Information
           SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -59,6 +59,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./Dockerfile
           push: true
           tags: mozlau/cicd:${{github.sha}}
       -
@@ -73,6 +75,18 @@ jobs:
           TAGS: ${{ mozlau/cicd }}
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+
+         # 3
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Name: LIUBAO \ Matriculation: A0286053A \ Email:e1221865@u.nus.edu \ https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git \ Docker:'
+          SLACK_TITLE: Information
+          SLACK_USERNAME: CICD
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           
         
 
