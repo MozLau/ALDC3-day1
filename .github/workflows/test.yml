@@ -87,7 +87,7 @@ jobs:
           file_type: 'text'
           file_name: 'trivy-result.txt'
           title: 'title of file'
-          initial_comment: 'post by LAUBAO'
+          initial_comment: 'post by LAUBAO' 
           
         
 
