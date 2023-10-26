@@ -46,7 +46,7 @@ jobs:
       - uses: MeilCli/slack-upload-file@v3
         with:
           slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
-          channel_id: 'devops'
+          channel_name: 'devops'
           content: 'file content'
           file_type: 'text'
           file_name: 'trivy-result.txt'
