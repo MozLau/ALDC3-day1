@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    if: ${{ !startwith(commit,#NORUN)}}
+    #if: ${{ !startwith(commit,#NORUN)}}
     runs-on: ubuntu-latest
     steps:
       # 2
@@ -28,20 +28,8 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'first.table'
-          severity: 'HIGH'
-
-        
-      # 3
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: general
-          SLACK_COLOR: ${{ good }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:'
-          SLACK_TITLE: Information
-          SLACK_USERNAME: CICD
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          severity: 'CRITICAL'   
+      
 
       # 4
       - name: Build and push Docker images
@@ -70,9 +58,31 @@ jobs:
         run: |
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}"
         env:
-          TAGS: ${{ mozlau/cicd }}
+          TAGS: 'mozlau/cicd'
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+
+      # 
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: general
+          SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\nDocker:'
+          SLACK_TITLE: Information
+          SLACK_USERNAME: CICD
+          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
+
+      - uses: MeilCli/slack-upload-file@v3
+        with:
+          slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
+          channel_id: ${{secrets.WEBHOOK_TEST_ID}}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'trivy-result.txt'
+          title: 'title of file'
+          initial_comment: 'post by LAUBAO'
           
         
 
