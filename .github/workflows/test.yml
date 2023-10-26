@@ -41,11 +41,11 @@ jobs:
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan failed - LIU BAO
           SLACK_USERNAME: DipSA 57 CICD
-          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_SUMMIT }}
+          SLACK_WEBHOOK: ${{ secrets.SUMMIT }}
 
       - uses: MeilCli/slack-upload-file@v3
         with:
-          slack_token: ${{ secrets.WEBHOOK_SUMMIT_TOKEN }}
+          slack_token: ${{ secrets.SUMMIT_TOKEN }}
           channel_id: ${{ secrets.WEBHOOK_SUMMIT_ID }}
           content: 'file content'
           file_type: 'txt'
