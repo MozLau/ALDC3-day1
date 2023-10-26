@@ -76,7 +76,7 @@ jobs:
           SLACK_MESSAGE: 'Name: LIUBAO\nMatriculation: A0286053A\nEmail:<e1221865@u.nus.edu>\n<https://github.com/MozLau/LAUBAO_CICDWORKSHOP.git>\n<Docker:https://hub.docker.com/repository/docker/mozlau/cicd/general>'
           SLACK_TITLE: Image build and signed
           SLACK_USERNAME: DipSA 57 CICD
-          SLACK_WEBHOOK: ${{secrets.SUMMIT}}
+          SLACK_WEBHOOK: ${{ secrets.SUMMIT }}
 
     
       - uses: MeilCli/slack-upload-file@v3
