@@ -48,7 +48,7 @@ jobs:
           slack_token: ${{secrets.WEBHOOK_TEST_TOKEN}}
           channel_id: ${{secrets.WEBHOOK_TEST_ID}}
           content: 'file content'
-          file_type: 'text'
+          file_type: 'txt'
           file_name: 'trivy-result.txt'
           title: 'title of file'
           initial_comment: 'post by LAUBAO'
